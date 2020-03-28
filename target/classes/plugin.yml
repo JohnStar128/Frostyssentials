@@ -1,0 +1,28 @@
+name: Frostyssentials
+version: 1.2
+main: me.johnstar128.frostyssentials.Frostyssentials
+authors: [JohnStar128]
+description: Essential commands and tools for FrostCraft's Bukkit Server
+website: github.com/johnstar128
+commands:
+  speed:
+    description: Set your flight speed
+    useage: /<command>
+  nightvis:
+    description: Toggle night vision
+    useage: /<command>
+  enderchest:
+    description: Open your ender chest GUI
+    useage: /<command>
+    aliases: ["ec", "fec"]
+  workbench:
+    description: Open a workbench GUI
+    useage: /<command>
+    aliases: ["crafting", "craftingtable", "idesiretocraftatmycurrentlocation", "c", "ct"]
+  kit:
+    description: Save/load your inventory
+    usage: /<command>
+  kittycannon:
+    description: Meow
+    usage: /<command>
+    aliases: ["kc"]
