@@ -19,3 +19,10 @@ commands:
     description: Open a workbench GUI
     useage: /<command>
     aliases: ["crafting", "craftingtable", "idesiretocraftatmycurrentlocation", "c", "ct"]
+  kit:
+    description: Save/load your inventory
+    usage: /<command>
+  kittycannon:
+    description: Meow
+    usage: /<command>
+    aliases: ["kc"]
