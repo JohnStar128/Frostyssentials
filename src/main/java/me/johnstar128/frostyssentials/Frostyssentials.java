@@ -14,7 +14,6 @@ public final class Frostyssentials extends JavaPlugin {
         registerEvents();
         registerKitsConfig();
         registerCommands();
-        registerConfig();
     }
     public void registerEvents() {
         getServer().getPluginManager().registerEvents(new MessageFormatting(), this);
@@ -22,7 +21,7 @@ public final class Frostyssentials extends JavaPlugin {
     public void registerKitsConfig() {
         cfg = new ConfigManager();
         cfg.setup();
-        cfg.getConfig().options().copyDefaults();
+        cfg.getConfig().options().copyDefaults(true);
         cfg.saveConfig();
     }
     public void registerCommands() {
@@ -32,9 +31,5 @@ public final class Frostyssentials extends JavaPlugin {
         getCommand("nightvis").setExecutor(new NightVisCommand());
         getCommand("enderchest").setExecutor(new EnderChestCommand());
         getCommand("kittycannon").setExecutor(new KittycannonCommand(this));
-    }
-    public void registerConfig() {
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
     }
 }
