@@ -25,7 +25,7 @@ public class KitCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "You must be a player to use this command");
             return true;
         }
-        if (!(sender.hasPermission("frostyssentials.kits"))) {
+        if (!(sender.hasPermission("frostyssentials.command.kits"))) {
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }

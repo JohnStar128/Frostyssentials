@@ -26,7 +26,7 @@ public class KittycannonCommand implements CommandExecutor {
             sender.sendMessage("You must be a player to use this command");
             return true;
         }
-        if (!(sender.hasPermission("frostyssentials.kittycannon"))) {
+        if (!(sender.hasPermission("frostyssentials.command.kittycannon"))) {
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }

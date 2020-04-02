@@ -14,7 +14,7 @@ public class WorkbenchCommand implements CommandExecutor {
             sender.sendMessage("You must be a player to use this command");
             return true;
         }
-        if(!(sender.hasPermission("frostyssentials.command.nightvis"))) {
+        if(!(sender.hasPermission("frostyssentials.command.workbench"))) {
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }

@@ -12,6 +12,6 @@ public class MessageFormatting implements Listener {
     public void onMessageSend(AsyncPlayerChatEvent e) {
         String msg = e.getMessage();
         Player p = e.getPlayer();
-        e.setFormat("<" + p.getDisplayName() + "> " + ChatColor.translateAlternateColorCodes('&', msg));
+        e.setMessage(ChatColor.translateAlternateColorCodes('&', msg));
     }
 }
