@@ -14,4 +14,4 @@ The features of this plugin are:
 - /enderchest -- View your ender chest remotely.
 - /workbench -- Open a workbench GUI.
 - /kittycannon -- Meow.
-- /kit <save/load/delete/list> -- Save your inventory to a value, load it later, or delete it, list all your currently saved kits //TODO make list subcommand not require a 2nd argument to list
+- /kit <save/load/delete/list> -- Save up to 25 inventories(configurable in kits.yml) to a value, load them later, or delete them, list all your currently saved kits or the contents within them
