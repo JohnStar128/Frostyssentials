@@ -125,8 +125,10 @@ public class KitCommand implements CommandExecutor {
                 }
                 break;
             case "reload":
+                    cfg.saveConfig();
                     cfg.reloadConfig();
                     p.sendMessage(ChatColor.GREEN + "Config reloaded!");
+                    break;
             default:
                 p.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
                 break;
