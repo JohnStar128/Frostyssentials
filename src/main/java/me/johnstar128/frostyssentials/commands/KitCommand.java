@@ -36,12 +36,10 @@ public class KitCommand implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        //String kitToSave = args[1];
         String sl = args[0];
         String playerUUID = p.getUniqueId().toString();
         int indexItems = 0;
         int kitMax = cfg.getConfig().getInt("max-kits");
-        //ConfigurationSection loadKit = cfg.getConfig().getConfigurationSection("players." + playerUUID + "." + args[1] + ".slots");
         switch (sl) {
             case "save":
                 try {
@@ -140,7 +138,7 @@ public class KitCommand implements CommandExecutor {
     public void fillInv(ConfigurationSection cs, String playerUUID, Player p, String kitToSave){
         try {
             for (String i : cs.getKeys(false)) {
-                int itemIndex = parseInt(i);
+                int itemIndex =Integer.parseInt(i);
                 ItemStack itemToGive = cfg.getConfig().getItemStack("players." + playerUUID + "." + kitToSave + ".slots." + i);
                 p.getInventory().setItem(itemIndex, itemToGive);
             }
@@ -149,23 +147,13 @@ public class KitCommand implements CommandExecutor {
             e.getStackTrace();
         }
     }
-    private int parseInt (String s){
-        int x = 0;
-        try {
-            x = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            e.getStackTrace();
-        }
-        return x;
-    }
     public void kitGUI(ConfigurationSection cs, String playerUUID, Player p, String kitToSave) {
         Inventory kitList = Bukkit.createInventory(p, 45, ChatColor.GOLD + kitToSave);
         for(String i : cs.getKeys(false)) {
-            int currentSlot = parseInt(i);
+            int currentSlot = Integer.parseInt(i);
             ItemStack item = new ItemStack(cfg.getConfig().getItemStack("players." + playerUUID + "." + kitToSave + ".slots." + currentSlot));
             kitList.setItem(currentSlot, item);
         }
-
         p.openInventory(kitList);
     }
 }
