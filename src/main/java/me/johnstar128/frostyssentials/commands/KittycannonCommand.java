@@ -12,6 +12,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Player;
 
+import static me.johnstar128.frostyssentials.Frostyssentials.printUsage;
+
 public class KittycannonCommand implements CommandExecutor {
 
     Frostyssentials plugin;
@@ -30,6 +32,12 @@ public class KittycannonCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }
+
+        if (args.length > 0) {
+            printUsage(sender, label, null, null);
+            return true;
+        }
+
         Player p = (Player) sender;
         Ocelot cat = (Ocelot) p.getWorld().spawnEntity(p.getLocation().add(0.0, 1.0, 0.0), EntityType.OCELOT);
         cat.setVelocity(p.getLocation().getDirection().multiply(2));

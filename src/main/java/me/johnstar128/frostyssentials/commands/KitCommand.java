@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import static me.johnstar128.frostyssentials.Frostyssentials.printUsage;
+
 public class KitCommand implements CommandExecutor {
 
     private ConfigManager cfg;
@@ -31,10 +33,11 @@ public class KitCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "You do not have permission to use this command");
             return true;
         }
-        if(args.length < 1) {
-            sender.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
+        if (args.length < 1 || args.length > 3) {
+            printUsage(sender, label, null,"<save/load/list/delete> <value>");
             return true;
         }
+
         Player p = (Player) sender;
         String sl = args[0];
         String playerUUID = p.getUniqueId().toString();
@@ -77,10 +80,11 @@ public class KitCommand implements CommandExecutor {
                         cfg.saveConfig();
                         cfg.reloadConfig();
                     }
-                }catch (ArrayIndexOutOfBoundsException e) {
-                    p.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                     printUsage(sender, label, null,"<save/load/list/delete> <value>");
                 }
                 break;
+
             case "load":
                 try {
                     if (cfg.getConfig().contains("players." + playerUUID + "." + args[1])) {
@@ -90,10 +94,11 @@ public class KitCommand implements CommandExecutor {
                     } else {
                         p.sendMessage(ChatColor.RED + "Couldn't find kit " + ChatColor.GOLD + args[1]);
                     }
-                }catch (ArrayIndexOutOfBoundsException e) {
-                    p.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                     printUsage(sender, label, null,"<save/load/list/delete> <value>");
                 }
                 break;
+
             case "delete":
                 try {
                     if (cfg.getConfig().contains("players." + playerUUID + "." + args[1])) {
@@ -102,41 +107,45 @@ public class KitCommand implements CommandExecutor {
                     } else {
                         p.sendMessage(ChatColor.RED + "Couldn't find kit " + ChatColor.GOLD + args[1]);
                     }
-                }catch (ArrayIndexOutOfBoundsException e) {
-                    p.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
+                } catch (ArrayIndexOutOfBoundsException e) {
+                     printUsage(sender, label, null,"<save/load/list/delete> <value>");
                 }
                 break;
+
             case "list":
-                if(args.length <= 1) {
+                if (args.length <= 1) {
                     try {
-                        if(cfg.getConfig().getConfigurationSection("players." + playerUUID).getKeys(false).isEmpty()) {
+                        if (cfg.getConfig().getConfigurationSection("players." + playerUUID).getKeys(false).isEmpty()) {
                             p.sendMessage(ChatColor.RED + "No available kits to list");
-                        }else{
+                        } else {
                             p.sendMessage(ChatColor.GREEN + "Available kits: " + ChatColor.GOLD + cfg.getConfig().getConfigurationSection("players." + playerUUID).getKeys(false));
                         }
                     } catch (NullPointerException e) {
                         p.sendMessage(ChatColor.RED + "No kits found!");
                     }
-                }else if(cfg.getConfig().contains("players." + playerUUID + "." + args[1])){
+                } else if (cfg.getConfig().contains("players." + playerUUID + "." + args[1])){
                     p.sendMessage(ChatColor.GOLD + "Contents of " + ChatColor.RED + args[1]);
                    kitGUI(cfg.getConfig().getConfigurationSection("players." + playerUUID + "." + args[1] + ".slots."), playerUUID, p, args[1]);
-                }else{
+                } else {
                     p.sendMessage(ChatColor.RED + "Couldn't find kit " + ChatColor.GOLD + args[1]);
                 }
                 break;
+
             case "reload":
-                    cfg.saveConfig();
-                    cfg.reloadConfig();
-                    p.sendMessage(ChatColor.GREEN + "Config reloaded!");
-                    break;
+                cfg.saveConfig();
+                cfg.reloadConfig();
+                p.sendMessage(ChatColor.GREEN + "Config reloaded!");
+                break;
+
             default:
-                p.sendMessage(ChatColor.RED + "/kit <save/load/delete/list> <value>");
+                printUsage(sender, label, null, "<save/load/list/delete> <value>");
                 break;
         }
         cfg.saveConfig();
         cfg.reloadConfig();
         return true;
     }
+
     public void fillInv(ConfigurationSection cs, String playerUUID, Player p, String kitToSave){
         try {
             for (String i : cs.getKeys(false)) {
@@ -149,9 +158,10 @@ public class KitCommand implements CommandExecutor {
             e.getStackTrace();
         }
     }
+
     public void kitGUI(ConfigurationSection cs, String playerUUID, Player p, String kitToSave) {
         Inventory kitList = Bukkit.createInventory(p, 45, ChatColor.GOLD + kitToSave);
-        for(String i : cs.getKeys(false)) {
+        for (String i : cs.getKeys(false)) {
             int currentSlot = Integer.parseInt(i);
             ItemStack item = new ItemStack(cfg.getConfig().getItemStack("players." + playerUUID + "." + kitToSave + ".slots." + currentSlot));
             kitList.setItem(currentSlot, item);

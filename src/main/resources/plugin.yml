@@ -8,21 +8,72 @@ commands:
   speed:
     description: Set your flight speed
     useage: /<command>
+    permission: frostyssentials.command.speed
   nightvis:
     description: Toggle night vision
     useage: /<command>
+    permission: frostyssentials.command.nightvis
   enderchest:
     description: Open your ender chest GUI
     useage: /<command>
     aliases: ["ec", "fec"]
+    permission: frostyssentials.command.enderchest
   workbench:
     description: Open a workbench GUI
     useage: /<command>
     aliases: ["crafting", "craftingtable", "idesiretocraftatmycurrentlocation", "c", "ct"]
+    permission: frostyssentials.command.workbench
   kit:
     description: Save/load your inventory
     usage: /<command>
+    permission: frostyssentials.command.kit
   kittycannon:
     description: Meow
     usage: /<command>
     aliases: ["kc"]
+    permission: frostyssentials.command.kittycannon
+  map:
+    description: Give yourself a map with a specified ID
+    usage: "/<command> <map ID>"
+    permission: frostyssentials.command.map
+  skull:
+    description: Give yourself a playerhead
+    usage: "/<command> <username>"
+    aliases: "head"
+    permission: frostyssentials.command.skull
+  signedit:
+    description: Edit sign lines remotely
+    usage: "/<command> <line> <message>"
+    aliases: "se"
+    permission: frostyssentials.command.signedit
+
+
+
+permissions:
+  frostyssentials.command.speed:
+    description: Gives permission for the /speed command.
+    default: op
+  frostyssentials.command.nightvis:
+    description: Gives permission for the /nightvis command.
+    default: op
+  frostyssentials.command.enderchest:
+    description: Gives permission for the /enderchest command.
+    default: op
+  frostyssentials.command.workbench:
+    description: Gives permission for the /workbench command.
+    default: op
+  frostyssentials.command.kit:
+    description: Gives permission for the /kit command.
+    default: op
+  frostyssentials.command.kittycannon:
+    description: Gives permission for the /kittycannon command.
+    default: op
+  frostyssentials.command.map:
+    description: Gives permission for the /map command.
+    default: op
+  frostyssentials.command.skull:
+    description: Gives permission for the /skull command.
+    default: op
+  frostyssentials.command.signedit:
+    description: Gives permission for the /signedit command.
+    default: op
